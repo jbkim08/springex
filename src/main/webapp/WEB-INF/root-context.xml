@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
     <!-- 객체 등록 : 스프링에서 관리함  -->
 <!--    <bean class="org.zerock.springex.sample.SampleDAO"></bean>-->
 <!--    <bean class="org.zerock.springex.sample.SampleService"></bean>-->
@@ -25,5 +26,13 @@
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <constructor-arg ref="hikariConfig" />
     </bean>
+
+    <!-- 마이바티스 객체(데이터소스 입력)   -->
+    <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 프로젝트 mapper 패키지의 인터페이스 sql문 메소드를 찾아서 구현함    -->
+    <mybatis:scan base-package="org.zerock.springex.mapper"></mybatis:scan>
 
 </beans>
