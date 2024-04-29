@@ -28,11 +28,15 @@
     </bean>
 
     <!-- 마이바티스 객체(데이터소스 입력)   -->
+    <!-- sql 문을 xml 에 작성시 그 위치를 설정 -->
     <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:/mappers/**/*.xml" ></property>
     </bean>
 
     <!-- 프로젝트 mapper 패키지의 인터페이스 sql문 메소드를 찾아서 구현함    -->
     <mybatis:scan base-package="org.zerock.springex.mapper"></mybatis:scan>
+
+
 
 </beans>
