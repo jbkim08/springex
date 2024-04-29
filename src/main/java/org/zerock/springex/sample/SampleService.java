@@ -3,6 +3,7 @@ package org.zerock.springex.sample;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,5 +11,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SampleService {
     //생성자 주입
+    @Qualifier("normal")
     private  final SampleDAO sampleDAO;
 }
