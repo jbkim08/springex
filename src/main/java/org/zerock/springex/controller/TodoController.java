@@ -3,6 +3,7 @@ package org.zerock.springex.controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.springex.dto.TodoDTO;
 
 @Controller
 @Log4j2
@@ -19,7 +20,8 @@ public class TodoController {
         log.info("register get method");
     }
     @PostMapping("/register")
-    public void registerPost() {
+    public void registerPost(TodoDTO todoDTO) {
         log.info("register post method");
+        log.info("todoDTO: " + todoDTO);
     }
 }
