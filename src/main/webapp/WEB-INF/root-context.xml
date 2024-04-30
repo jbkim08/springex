@@ -36,6 +36,7 @@
     <!-- 프로젝트 mapper 패키지의 인터페이스 sql문 메소드를 찾아서 구현함    -->
     <mybatis:scan base-package="org.zerock.springex.mapper"></mybatis:scan>
 
-
+    <!--  모델매퍼 객체 빈 등록을 위해 추가  -->
+    <context:component-scan base-package="org.zerock.springex.config" />
 
 </beans>
