@@ -7,7 +7,6 @@
     <!-- 객체 등록 : 스프링에서 관리함  -->
 <!--    <bean class="org.zerock.springex.sample.SampleDAO"></bean>-->
 <!--    <bean class="org.zerock.springex.sample.SampleService"></bean>-->
-    <context:component-scan base-package="org.zerock.springex.sample"/>
 
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
