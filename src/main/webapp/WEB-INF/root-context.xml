@@ -38,5 +38,6 @@
 
     <!--  모델매퍼 객체 빈 등록을 위해 추가  -->
     <context:component-scan base-package="org.zerock.springex.config" />
+    <context:component-scan base-package="org.zerock.springex.service" />
 
 </beans>
