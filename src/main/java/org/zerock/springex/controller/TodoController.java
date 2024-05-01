@@ -11,6 +11,7 @@ import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.service.TodoService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @Log4j2
@@ -24,7 +25,8 @@ public class TodoController {
     @RequestMapping("/list")
     public void list(Model model) {
         log.info("list");
-        model.addAttribute("dtoList", todoService.getAll());
+        List<TodoDTO> dtoList = todoService.getAll();
+        model.addAttribute("dtoList", dtoList);
     }
     //localhost:8080/todo/register (get)
     @GetMapping("/register")
