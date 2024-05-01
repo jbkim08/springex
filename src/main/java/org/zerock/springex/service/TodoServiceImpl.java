@@ -8,6 +8,9 @@ import org.zerock.springex.domain.TodoVO;
 import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.mapper.TodoMapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -23,5 +26,14 @@ public class TodoServiceImpl implements TodoService {
         TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
         log.info(todoVO);
         todoMapper.insert(todoVO); //DB 입력
+    }
+
+    @Override
+    public List<TodoDTO> getAll() {
+        //todoMapper 에서 VO 리스트를 가져옴 그래서 stream 과 map 으로 DTO 리스트로 변환
+        List<TodoDTO> dtoList = todoMapper.selectAll().stream()
+                .map(vo -> modelMapper.map(vo, TodoDTO.class))
+                .collect(Collectors.toList());
+        return dtoList;
     }
 }

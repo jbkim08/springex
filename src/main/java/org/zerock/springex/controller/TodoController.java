@@ -3,6 +3,7 @@ package org.zerock.springex.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,8 +22,9 @@ public class TodoController {
 
     //localhost:8080/todo/list
     @RequestMapping("/list")
-    public void list() {
+    public void list(Model model) {
         log.info("list");
+        model.addAttribute("dtoList", todoService.getAll());
     }
     //localhost:8080/todo/register (get)
     @GetMapping("/register")
