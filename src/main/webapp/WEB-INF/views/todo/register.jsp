@@ -66,7 +66,7 @@
                             <div class="my-4">
                                 <div class="float-end">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="result" class="btn btn-secondary">Reset</button>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
                             </div>
                         </form>
@@ -90,11 +90,12 @@
                 </div>
             </div>
         </div>
-
     </div>
+
     <div class="row content">
         <h1>Content</h1>
     </div>
+
     <div class="row footer">
         <!--<h1>Footer</h1>-->
 
