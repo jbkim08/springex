@@ -59,7 +59,7 @@ public class TodoController {
 
     //한개의 할일을 DB 에서 읽어와서 표시하기
     @GetMapping({"/read","/modify"})
-    public void read(Long tno, Model model){
+    public void read(Long tno, PageRequestDTO pageRequestDTO, Model model){
         TodoDTO todoDTO = todoService.getOne(tno);
         log.info("todoDTO: " + todoDTO);
         model.addAttribute("dto", todoDTO);
