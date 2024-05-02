@@ -66,7 +66,7 @@ public class TodoController {
     }
 
     @PostMapping("/remove")
-    public String remove(Long tno, RedirectAttributes redirectAttributes) {
+    public String remove(Long tno, PageRequestDTO pageRequestDTO, RedirectAttributes redirectAttributes) {
         log.info("remove method");
         log.info("tno: " + tno);
         todoService.remove(tno); //삭제
@@ -74,7 +74,8 @@ public class TodoController {
     }
 
     @PostMapping("/modify")
-    public String modify(@Valid TodoDTO todoDTO,
+    public String modify(PageRequestDTO pageRequestDTO,
+                         @Valid TodoDTO todoDTO,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
 
@@ -86,7 +87,8 @@ public class TodoController {
         }
         log.info("todoDTO: " + todoDTO);
         todoService.modify(todoDTO); //수정하기
-
+        redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
+        redirectAttributes.addAttribute("size", pageRequestDTO.getSize());
         return "redirect:/todo/list";
     }
 
