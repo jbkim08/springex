@@ -118,15 +118,13 @@
 
                         },false);
 
-
+                        //수정버튼 클릭시 아래 함수를 실행함
                         document.querySelector(".btn-primary").addEventListener("click",function(e) {
-
-                            e.preventDefault()
+                            e.preventDefault() //이벤트 정지
                             e.stopPropagation()
 
                             formObj.action ="/todo/modify"
                             formObj.method ="post"
-
                             formObj.submit()
 
                         },false);

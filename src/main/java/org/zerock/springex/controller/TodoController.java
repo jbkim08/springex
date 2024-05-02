@@ -25,8 +25,8 @@ public class TodoController {
     @RequestMapping("/list")
     public void list(Model model) {
         log.info("list");
-        List<TodoDTO> dtoList = todoService.getAll();
-        model.addAttribute("dtoList", dtoList);
+        //List<TodoDTO> dtoList = todoService.getAll();
+        //model.addAttribute("dtoList", dtoList);
     }
     //localhost:8080/todo/register (get)
     @GetMapping("/register")
@@ -63,6 +63,24 @@ public class TodoController {
     public String remove(Long tno, RedirectAttributes redirectAttributes) {
         log.info("remove method");
         log.info("tno: " + tno);
+        todoService.remove(tno); //삭제
+        return "redirect:/todo/list";
+    }
+
+    @PostMapping("/modify")
+    public String modify(@Valid TodoDTO todoDTO,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("수정내용이 형식에 맞지않음...");
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            redirectAttributes.addAttribute("tno", todoDTO.getTno());
+            return "redirect:/todo/modify"; // 실패시 다시 수정페이지로 돌아감
+        }
+        log.info("todoDTO: " + todoDTO);
+        todoService.modify(todoDTO); //수정하기
+
         return "redirect:/todo/list";
     }
 
