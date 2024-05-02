@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.springex.dto.PageRequestDTO;
+import org.zerock.springex.dto.PageResponseDTO;
 import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.service.TodoService;
 
@@ -23,10 +25,14 @@ public class TodoController {
 
     //localhost:8080/todo/list
     @RequestMapping("/list")
-    public void list(Model model) {
-        log.info("list");
-        //List<TodoDTO> dtoList = todoService.getAll();
-        //model.addAttribute("dtoList", dtoList);
+    public void list(@Valid PageRequestDTO pageRequestDTO,
+                     BindingResult bindingResult, Model model) {
+        log.info(pageRequestDTO);
+        if (bindingResult.hasErrors()) {
+            pageRequestDTO = PageRequestDTO.builder().build(); //기본 세팅 1page 화면당 10개
+        }
+        PageResponseDTO<TodoDTO> responseDTO = todoService.getList(pageRequestDTO);
+        model.addAttribute("responseDTO", responseDTO);
     }
     //localhost:8080/todo/register (get)
     @GetMapping("/register")
