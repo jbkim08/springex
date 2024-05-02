@@ -107,20 +107,21 @@
 
                         <div class="float-end">
                             <ul class="pagination flex-wrap">
+                                <%--  이전 버튼  --%>
                                 <c:if test="${responseDTO.prev}">
                                     <li class="page-item">
-                                        <a class="page-link" data-num="${responseDTO.start -1}">Previous</a>
+                                        <a class="page-link" data-num="${responseDTO.start -1}">이전</a>
                                     </li>
                                 </c:if>
-
+                                <%--  가운데 페이지 숫자   --%>
                                 <c:forEach begin="${responseDTO.start}" end="${responseDTO.end}" var="num">
                                     <li class="page-item ${responseDTO.page == num? "active":""} ">
                                         <a class="page-link"  data-num="${num}">${num}</a></li>
                                 </c:forEach>
-
+                                <%--  다음버튼   --%>
                                 <c:if test="${responseDTO.next}">
                                     <li class="page-item">
-                                        <a class="page-link"  data-num="${responseDTO.end + 1}">Next</a>
+                                        <a class="page-link"  data-num="${responseDTO.end + 1}">다음</a>
                                     </li>
                                 </c:if>
                             </ul>
@@ -129,49 +130,31 @@
 
                         <script>
 
-                            /* document.querySelector(".pagination").addEventListener("click", function (e) {
-                                    e.preventDefault()
-                                    e.stopPropagation()
-
-                                    const target = e.target
-
-
-                                    if(target.tagName !== 'A') {
-                                        return
-                                    }
-                                    const num = target.getAttribute("data-num")
-
-                                    self.location = `/todo/list?page=\${num}` //백틱(` `)을 이용해서 템플릿 처리
-                                },false)*/
-
+                            //페이지네이션에 이벤트 클릭시 아래 함수 실행
                             document.querySelector(".pagination").addEventListener("click", function (e) {
                                 e.preventDefault()
                                 e.stopPropagation()
 
                                 const target = e.target
-
+                                //console.log('클릭했음')
+                                //console.log(target)
                                 if(target.tagName !== 'A') {
                                     return
                                 }
+
                                 const num = target.getAttribute("data-num")
-
-                                const formObj = document.querySelector("form")
-
-                                formObj.innerHTML += `<input type='hidden' name='page' value='\${num}'>`
-
-                                formObj.submit();
+                                //페이지 번호를 가져와서 todo/list에 추가해서 이동
+                                self.location = `/todo/list?page=\${num}`
 
                             },false)
 
 
 
-                            document.querySelector(".clearBtn").addEventListener("click", function (e){
-                                e.preventDefault()
-                                e.stopPropagation()
-
-                                self.location ='/todo/list'
-
-                            },false)
+                            // document.querySelector(".clearBtn").addEventListener("click", function (e){
+                            //     e.preventDefault()
+                            //     e.stopPropagation()
+                            //     self.location ='/todo/list'
+                            // },false)
 
 
                         </script>
