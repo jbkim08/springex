@@ -147,8 +147,9 @@
                                 }
 
                                 const num = target.getAttribute("data-num")
-                                //페이지 번호를 가져와서 todo/list에 추가해서 이동
-                                self.location = `/todo/list?page=\${num}`
+                                const formOjb = document.querySelector('form')
+                                formOjb.innerHTML += `<input type="hidden" name="page" value="\${num}">`
+                                formOjb.submit()
 
                             },false)
 
