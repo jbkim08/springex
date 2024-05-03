@@ -66,7 +66,7 @@ public class TodoMapperTests {
                 .page(1)
                 .size(10)
                 .types(new String[]{"t","w"})
-                .keyword("스프링")
+                .keyword("펭수")
                 .from(LocalDate.of(2024,05,03))
                 .to(LocalDate.of(2024,05,07))
                 .build();
