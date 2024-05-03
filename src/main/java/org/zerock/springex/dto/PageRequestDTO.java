@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 
 @Builder
 @Data
@@ -27,7 +28,12 @@ public class PageRequestDTO {
     @Max(value = 100)
     private int size = 10;
 
-    private String link; //추가링크
+    private String link;      //추가링크
+    private String[] types;   //검색종류
+    private String keyword;   //키워드
+    private boolean finished; //완료여부
+    private LocalDate from;    //시작 날짜
+    private LocalDate to;      //끝 날짜
 
     //넘어갈 게시글 숫자
     public int getSkip(){
