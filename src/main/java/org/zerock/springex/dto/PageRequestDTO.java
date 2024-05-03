@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -41,15 +43,36 @@ public class PageRequestDTO {
         return (page - 1) * size;
     }
 
-    //현재 페이지와 사이즈를 문자열 파라미터로 리턴
+    //현재 페이지와 사이즈 및 여러 조건들 문자열 파라미터로 리턴
     public String getLink() {
-        if(link == null){
-            StringBuilder builder = new StringBuilder();
-            builder.append("page=" + this.page);
-            builder.append("&size=" + this.size);
-            link = builder.toString();
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("page=" + this.page);
+        builder.append("&size=" + this.size);
+        if(finished){
+            //체크박스 완료체크가 되면 on 이 추가됨
+            builder.append("&finished=on");
         }
-        return link;
+        if(types != null && types.length > 0){
+            for(int i=0; i<types.length; i++){
+                builder.append("&types=" + types[i]);
+            }
+        }
+        if(keyword != null){
+            try {
+                builder.append("&keyword=" + URLEncoder.encode(keyword,"UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        if(from != null){
+            builder.append("&from=" + from.toString());
+        }
+        if(to != null){
+            builder.append("&to=" + to.toString());
+        }
+
+        return builder.toString();
     }
 
     //types 배열에서 매치되는 문자열이 있는지 확인
