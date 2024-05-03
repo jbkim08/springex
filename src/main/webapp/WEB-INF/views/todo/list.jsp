@@ -154,11 +154,11 @@
 
 
 
-                            // document.querySelector(".clearBtn").addEventListener("click", function (e){
-                            //     e.preventDefault()
-                            //     e.stopPropagation()
-                            //     self.location ='/todo/list'
-                            // },false)
+                            document.querySelector(".clearBtn").addEventListener("click", function (e){
+                                e.preventDefault()
+                                e.stopPropagation()
+                                self.location ='/todo/list'
+                            },false)
 
 
                         </script>
